@@ -1,0 +1,14 @@
+version: "3.8"
+services:
+  authorizer-database:
+    image: mongo:4.0-xenial
+    container_name: "authorizer-database"
+    ports:
+      - 27017:27017
+    command: --smallfiles
+  authorizer-service:
+    image: authorizer-service
+    ports:
+      - 9091:8080
+    links:
+      - authorizer-database
